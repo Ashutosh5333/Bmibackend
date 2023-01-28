@@ -5,6 +5,7 @@ const { connection } = require("./config/db")
 const {Usermodel} = require("./models/User.model")
 const {BmiRouter} = require("./routes/bmi.route")
 const { authenticate } = require("./middleware/authentication")
+ const cors = require("cors")
 
 const app = express()
 app.use(express.json())
@@ -12,6 +13,10 @@ app.use(express.json())
 app.get("/" , (req,res) => {
     res.send("welcome home")
 })
+
+app.use(cors({
+   origin:"*"
+}))
 
 
 app.get("/getprofile", async(req,res) =>{
